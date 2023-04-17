@@ -10,7 +10,7 @@
 	"require" : {
 		"php" : "^7.4|^8.0|^8.1",
 		"sylius/sylius" : "^1.10",
-		"fabit/sylius-odoo-core-plugin" : "^1.1",
+		"fabit/sylius-odoo-core-plugin" : "^1.0",
 		"symfony/lock" : "^4.0|^5.0",
 		"symfony/messenger" : "^4.0|^5.0",
 		"lakion/mink-debug-extension" : "^2.0"
@@ -38,7 +38,6 @@
 		"sylius-labs/coding-standard": "^4.3"
 	},
 	"prefer-stable" : true,
-	"minimum-stability": "dev",
 	"autoload" : {
 		"psr-4" : {
 			"Fabit\\SyliusOdooProductPlugin\\" : "src/",
