@@ -38,6 +38,7 @@
 		"sylius-labs/coding-standard": "^4.3"
 	},
 	"prefer-stable" : true,
+	"minimum-stability": "dev",
 	"autoload" : {
 		"psr-4" : {
 			"Fabit\\SyliusOdooProductPlugin\\" : "src/",
