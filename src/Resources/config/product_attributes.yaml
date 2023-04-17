@@ -1,0 +1,12 @@
+sylius_odoo_product:
+  product_attributes:
+    allowed_types:
+      id: [ int, null ]
+      code: string
+      name: string
+      taxes_id: array
+      is_published: boolean
+      description: [ string, boolean ]
+      weight: [ integer, float ]
+      lst_price: [ integer ]
+      image1920: [ string, null ]

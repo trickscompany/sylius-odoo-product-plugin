@@ -1,0 +1,15 @@
+monolog:
+  channels: [ 'odoo_tax', 'odoo_product' ]
+  handlers:
+    odoo_tax:
+      level: debug
+      type: stream
+      path: '%kernel.logs_dir%/odoo_tax.log'
+      channels: [ odoo_tax ]
+      max_files: 10
+    odoo_product:
+      level: debug
+      type: stream
+      path: '%kernel.logs_dir%/odoo_product.log'
+      channels: [ odoo_product ]
+      max_files: 10

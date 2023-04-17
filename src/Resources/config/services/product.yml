@@ -1,0 +1,53 @@
+parameters:
+  offset: 0
+  limit: 50
+  product_params:
+    module: 'product.product'
+    action: 'search_read'
+    offset: '%offset%'
+    limit: '%limit%'
+    filter:
+      -
+        -
+          - 'id'
+          - '>'
+          - 0
+    fieldsArray:
+      fields:
+        - 'name'
+        - 'code'
+        - 'categ_id'
+        - 'description'
+        - 'taxes_id'
+        - 'lst_price'
+        - 'product_tmpl_id'
+        - 'image_1920'
+        - 'active'
+        # Append all your fields here that you want to sync from odoo
+      context:
+        lang: 'en_US'
+      offset: '%offset%'
+      limit:  '%limit%'
+  product_params_count:
+    module: 'product.product'
+    action: 'search_count'
+    offset: '%offset%'
+    limit: '%limit%'
+    filter:
+      -
+        -
+          - 'id'
+          - '>'
+          - 0
+    fieldsArray: []
+
+services:
+  odoo_product.count:
+    class: Fabit\SyliusOdooProductPlugin\Api\Product\GetProductsCount
+    arguments: [ '@monolog.logger', '%product_params_count%', '%odoo_config%' ]
+    public: true
+
+  odoo_product.get:
+    class: Fabit\SyliusOdooProductPlugin\Api\Product\GetProducts
+    arguments: ['@monolog.logger', '%product_params%', '%odoo_config%']
+    public: true

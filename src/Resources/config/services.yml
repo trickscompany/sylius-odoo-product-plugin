@@ -1,0 +1,171 @@
+imports:
+  - { resource: "services/**/*.yml" }
+
+services:
+  fabit.sylius_odoo_product_plugin.cli.import_products:
+    class: Fabit\SyliusOdooProductPlugin\Cli\ImportProducts
+    public: true
+    tags:
+      - { name: console.command }
+    arguments:
+      - '@messenger.default_bus'
+      - 'en_US'
+    calls:
+      - [ setContainer, [ '@service_container' ] ]
+
+  fabit.sylius_odoo_product_plugin.message_handler.import_odoo_products:
+    class: Fabit\SyliusOdooProductPlugin\MessageHandler\ImportOdooProductsMessageHandler
+    arguments:
+      - '@messenger.default_bus'
+      - '@fabit.sylius_odoo_product_plugin.data_transformer.product'
+      - '@odoo_product.count'
+      - '@odoo_product.get'
+      - '@sylius.repository.odoo_sync_log'
+      - '@monolog.logger'
+      - '@doctrine.orm.entity_manager'
+    tags:
+      - { name: messenger.message_handler }
+
+  fabit.sylius_odoo_product_plugin.message_handler.import_odoo_product:
+    class: Fabit\SyliusOdooProductPlugin\MessageHandler\ImportOdooProductMessageHandler
+    arguments:
+      - '@fabit.sylius_odoo_product_plugin.importer.product'
+    tags:
+      - { name: messenger.message_handler }
+
+  fabit.sylius_odoo_product_plugin.message_handler.import_odoo_taxes:
+    class: Fabit\SyliusOdooProductPlugin\MessageHandler\ImportOdooTaxesMessageHandler
+    arguments:
+      - '@messenger.default_bus'
+      - '@fabit.sylius_odoo_product_plugin.data_transformer.tax'
+      - '@odoo_tax.count'
+      - '@odoo_tax.get'
+      - '@sylius.repository.odoo_sync_log'
+      - '@monolog.logger'
+    tags:
+      - { name: messenger.message_handler }
+
+  fabit.sylius_odoo_product_plugin.message_handler.import_odoo_tax:
+    class: Fabit\SyliusOdooProductPlugin\MessageHandler\ImportOdooTaxMessageHandler
+    arguments:
+      - '@fabit.sylius_odoo_product_plugin.importer.tax'
+    tags:
+      - { name: messenger.message_handler }
+
+  fabit.sylius_odoo_product_plugin.data_transformer.product:
+    class: Fabit\SyliusOdooProductPlugin\DataTransformer\ProductDataTransformer
+    arguments:
+      - '%sylius_odoo_product.data_transform.product%'
+
+  fabit.sylius_odoo_product_plugin.data_transformer.tax:
+    class: Fabit\SyliusOdooProductPlugin\DataTransformer\DataTransformer
+    arguments:
+      - '%sylius_odoo_product.data_transform.tax%'
+
+  fabit.sylius_odoo_product_plugin.importer.tax:
+    class: Fabit\SyliusOdooProductPlugin\Importer\TaxImporter
+    arguments:
+      - '@fabit.sylius_odoo_product_plugin.resolver.tax_category'
+      - '@fabit.sylius_odoo_product_plugin.resolver.tax_rate'
+      - '@sylius.repository.tax_category'
+
+  fabit.sylius_odoo_product_plugin.importer.product:
+    class: Fabit\SyliusOdooProductPlugin\Importer\ProductImporter
+    arguments:
+      - '@fabit.sylius_odoo_product_plugin.resolver.product'
+      - '@fabit.sylius_odoo_product_plugin.resolver.product_variant'
+      - '@fabit.sylius_odoo_product_plugin.resolver.tax_category'
+      - '@fabit.sylius_odoo_product_plugin.resolver.channel_pricing'
+      - '@fabit.sylius_odoo_product_plugin.resolver.image'
+      - '@fabit.sylius_odoo_product_plugin.resolver.product_attribute'
+      - '@fabit.sylius_odoo_product_plugin.resolver.product_attribute_value'
+      - '@fabit.sylius_odoo_product_plugin.resolver.product_taxon'
+      - '@sylius.repository.product'
+      - '@fabit.sylius_odoo_product_plugin.downloader.image'
+      - '@sylius.image_uploader'
+      - '%kernel.project_dir%'
+
+  fabit.sylius_odoo_product_plugin.downloader.image:
+    class: Fabit\SyliusOdooProductPlugin\Downloader\ImageDownloader
+
+  fabit.sylius_odoo_product_plugin.resolver.channel_pricing:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\ChannelPricingResolver
+    arguments:
+      - '@sylius.repository.channel_pricing'
+      - '@sylius.factory.channel_pricing'
+
+  fabit.sylius_odoo_product_plugin.resolver.image:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\ImageResolver
+    arguments:
+      - '@sylius.repository.product_image'
+      - '@sylius.factory.product_image'
+
+  fabit.sylius_odoo_product_plugin.resolver.product:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\ProductResolver
+    arguments:
+      - '@sylius.repository.product'
+      - '@sylius.factory.product'
+
+  fabit.sylius_odoo_product_plugin.resolver.product_attribute:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\ProductAttributeResolver
+    arguments:
+      - '@sylius.repository.product_attribute'
+      - '@sylius.factory.product_attribute'
+
+  fabit.sylius_odoo_product_plugin.resolver.product_attribute_value:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\ProductAttributeValueResolver
+    arguments:
+      - '@sylius.repository.product_attribute_value'
+      - '@sylius.factory.product_attribute_value'
+
+  fabit.sylius_odoo_product_plugin.resolver.product_variant:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\ProductVariantResolver
+    arguments:
+      - '@sylius.factory.product_variant'
+
+  fabit.sylius_odoo_product_plugin.resolver.product_taxon:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\ProductTaxonResolver
+    arguments:
+      - '@sylius.factory.product_taxon'
+      - '@sylius.repository.product_taxon'
+      - '@sylius.repository.taxon'
+
+  fabit.sylius_odoo_product_plugin.resolver.shipping_category:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\ShippingCategoryResolver
+    arguments:
+      - '@sylius.repository.shipping_category'
+      - '@sylius.factory.shipping_category'
+
+  fabit.sylius_odoo_product_plugin.resolver.tax_category:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\TaxCategoryResolver
+    arguments:
+      - '@sylius.repository.tax_category'
+      - '@sylius.factory.tax_category'
+
+  fabit.sylius_odoo_product_plugin.resolver.tax_rate:
+    class: Fabit\SyliusOdooProductPlugin\Resolver\TaxRateResolver
+    arguments:
+      - '@sylius.repository.tax_rate'
+      - '@sylius.factory.tax_rate'
+
+  ### TO REFACTOR
+  odoo.controller:
+    class: Fabit\SyliusOdooProductPlugin\Controller\OdooController
+    public: true
+    arguments:
+      - '@twig'
+    calls:
+      - [setContainer, ["@service_container"]]
+
+  odoo.product_sync.controller:
+    class: Fabit\SyliusOdooProductPlugin\Controller\OdooProductSyncController
+    public: true
+    calls:
+      - [setContainer, ["@service_container"]]
+
+  odoo.menu_builder:
+    class: Fabit\SyliusOdooProductPlugin\Menu\AdminMenuListener
+    tags:
+      - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+      
+      

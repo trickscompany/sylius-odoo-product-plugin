@@ -1,0 +1,6 @@
+services:
+
+  sylius.repository.odoo_sync_log:
+    class: Fabit\SyliusOdooProductPlugin\Repository\OdooProductPluginLogRepository
+    arguments:
+      - '@doctrine'

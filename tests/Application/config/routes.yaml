@@ -1,0 +1,3 @@
+fabit_sylius_odoo_product_plugin_admin:
+    resource: "@SyliusOdooProductPlugin/Resources/config/admin_routing.yml"
+    prefix: /admin

@@ -1,0 +1,56 @@
+parameters:
+  offset: 0
+  limit: 50
+  tax_params:
+    module: 'account.tax'
+    action: 'search_read'
+    offset: '%offset%'
+    limit: '%limit%'
+    filter:
+      -
+        -
+          - 'type_tax_use'
+          - '='
+          - 'sale'
+    fieldsArray:
+      fields:
+        - 'id'
+        - 'name'
+        - 'description'
+        - 'amount'
+      offset: '%offset%'
+      limit:  '%limit%'
+  tax_params_count:
+    module: 'account.tax'
+    action: 'search_count'
+    offset: '%offset%'
+    limit: '%limit%'
+    filter:
+      -
+        -
+          - 'type_tax_use'
+          - '='
+          - 'sale'
+    fieldsArray: []
+
+services:
+  odoo_tax.count:
+    class: Fabit\SyliusOdooProductPlugin\Api\Tax\GetTaxCount
+    arguments: [ '@monolog.logger', '%tax_params_count%', '%odoo_config%' ]
+    public: true
+
+  odoo_tax.get:
+    class: Fabit\SyliusOdooProductPlugin\Api\Tax\GetTax
+    arguments: [ '@monolog.logger', '%tax_params%', '%odoo_config%' ]
+    public: true
+    
+  ## Create console command
+  fabit.sylius_odoo_product_plugin.cli.import_tax:
+    class: Fabit\SyliusOdooProductPlugin\Cli\ImportTaxes
+    public: true
+    tags:
+      - { name: console.command }
+    arguments:
+      - '@messenger.default_bus'
+    calls:
+      - [ setContainer, [ '@service_container' ] ]

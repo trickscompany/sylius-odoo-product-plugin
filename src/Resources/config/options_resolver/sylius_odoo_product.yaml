@@ -1,0 +1,112 @@
+sylius_odoo_product:
+    data_transform:
+        product:
+            mapping:
+                -
+                    sylius_field: id
+                    odoo_field: id
+                    required: true
+                    default: ''
+                    allow_types: [int, 'null']
+                -
+                    sylius_field: productTmplId
+                    odoo_field: product_tmpl_id
+                    required: true
+                    default: ''
+                    allow_types: [int, 'null']
+                -
+                    sylius_field: code
+                    odoo_field: code
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null']
+                -
+                    sylius_field: name
+                    odoo_field: name
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null']
+                -
+                    sylius_field: description
+                    odoo_field: description
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null']
+                -
+                    sylius_field: categId
+                    odoo_field: categ_id
+                    required: false
+                    default: [ ]
+                    allow_types: [array]
+                -
+                    sylius_field: lst_price
+                    odoo_field: lst_price
+                    required: true
+                    default: ''
+                    allow_types: [float]
+                -
+                    sylius_field: taxes_id
+                    odoo_field: taxes_id
+                    required: false
+                    default: [ ]
+                    allow_types: [array]
+                -
+                    sylius_field: image1920
+                    odoo_field: image_1920
+                    required: true
+                    default: null
+                    allow_types: [string, boolean, 'null']
+                -
+                    sylius_field: active
+                    odoo_field: active
+                    required: true
+                    default: null
+                    allow_types: [string, boolean, 'null']
+
+        tax:
+            mapping:
+                -
+                    sylius_field: code
+                    odoo_field: id
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null']
+                -
+                    sylius_field: name
+                    odoo_field: name
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null']
+                -
+                    sylius_field: description
+                    odoo_field: description
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null', 'bool']
+                -
+                    sylius_field: amount
+                    odoo_field: amount
+                    required: true
+                    default: ''
+                    allow_types: [float, 'null']
+        category:
+            mapping:
+                -
+                    sylius_field: code
+                    odoo_field: id
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null']
+                -
+                    sylius_field: name
+                    odoo_field: name
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null']
+                -
+                    sylius_field: parent
+                    odoo_field: parent_id
+                    required: true
+                    default: ''
+                    allow_types: [string, 'null']
+

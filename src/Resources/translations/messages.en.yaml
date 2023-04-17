@@ -1,0 +1,10 @@
+fabit_sylius_odoo_product:
+  menu:
+    odoo_management:
+      label: Odoo Management
+  odoo_management:
+    run_comand: Run
+    category_sync: Category Sync
+    tax_sync: Tax Sync
+    product_sync: Product Sync
+    manage_product_sync: Manage syncing products from Odoo

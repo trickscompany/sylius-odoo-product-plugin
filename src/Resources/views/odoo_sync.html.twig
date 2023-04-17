@@ -1,0 +1,73 @@
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% import '@SyliusUi/Macro/messages.html.twig' as messages %}
+
+{% block content %}
+    <div id="content">
+        <div class="ui stackable two column grid">
+            <div class="column">
+                <h1 class="ui header">
+                    <i class="circular cube icon"></i>
+                    <div class="content">
+                        {{ 'fabit_sylius_odoo_product.odoo_management.product_sync'|trans }}
+                        <div class="sub header">{{ 'fabit_sylius_odoo_product.odoo_management.manage_product_sync'|trans }}</div>
+                    </div>
+                </h1>
+                <div class="ui breadcrumb">
+                    <a href="{{ path('sylius_admin_dashboard') }}" class="section">{{ 'sylius.ui.admin'|trans }}</a>
+                    <i class="right chevron icon divider"></i>
+                    <div class="active section">Odoo</div>
+                </div>
+            </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        
+        {% for key, command in commands|default([]) %}
+        	<div class="ui two column stackable grid">
+                <div class="sixteen wide mobile sixteen wide tablet thirteen wide computer column">
+                    <div class="ui vertical fluid labeled icon buttons">
+                        <p class="ui button">{{ command.name | trans }}</p>
+                    </div>
+                </div>
+                <div class="sixteen wide mobile sixteen wide tablet three wide computer column sylius-product-index">
+                    <div class="ui vertical fluid labeled icon buttons">
+                        <a href="{{ path('odoo_sync', {command: key}) }}" class="ui primary button">
+                            {{ 'fabit_sylius_odoo_product.odoo_management.run_comand'|trans }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            {% if command.output | default([]) is not empty %}
+            	{% for param, output in command.output %}
+                    <div class="ui active tab" data-tab="details">
+            			<h3 class="ui top attached header">Output: {{ param }}</h3>
+            			<div class="ui attached segment">
+            				{{ output | nl2br }}
+            			</div>
+            		</div>
+            		<div class="ui hidden divider"></div>
+            	{% endfor %}
+            {% endif %}
+    
+            <div class="ui hidden divider"></div>
+        {% endfor %}
+        
+        {#<div class="ui two column stackable grid">
+            <div class="sixteen wide mobile sixteen wide tablet thirteen wide computer column">
+                <div class="ui vertical fluid labeled icon buttons">
+                    <p class="ui button">{{ 'fabit_sylius_odoo_product.odoo_management.product_sync'|trans }}</p>
+                </div>
+            </div>
+            <div class="sixteen wide mobile sixteen wide tablet three wide computer column sylius-product-index">
+                <div class="ui vertical fluid labeled icon buttons">
+                    <a href="{{ path('odoo_sync', {command: 'category'}) }}" class="ui primary button">
+                        {{ 'fabit_sylius_odoo_product.odoo_management.category_sync'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="ui hidden divider"></div>
+		#}
+    </div>
+{% endblock %}

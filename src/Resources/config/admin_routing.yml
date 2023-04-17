@@ -1,0 +1,12 @@
+# Define your own admin routes here
+odoo_sync:
+  path: /odoo-sync/{command}
+  methods: [GET]
+  defaults:
+    _controller: odoo.controller
+
+odoo_product_sync:
+  path: /odoo-product-sync
+  methods: [GET]
+  defaults:
+    _controller: odoo.product_sync.controller

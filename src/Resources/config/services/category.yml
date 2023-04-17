@@ -1,0 +1,94 @@
+parameters:
+  offset: 0
+  limit: 50
+  category_params:
+    module: 'product.category'
+    action: 'search_read'
+    offset: '%offset%'
+    limit: '%limit%'
+    filter:
+      -
+        -
+          - 'id'
+          - '>'
+          - '0'
+    fieldsArray:
+      fields:
+        - 'id'
+        - 'name'
+        - 'parent_id'
+      offset: '%offset%'
+      limit:  '%limit%'
+  category_params_count:
+    module: 'product.category'
+    action: 'search_count'
+    offset: '%offset%'
+    limit: '%limit%'
+    filter:
+      -
+        -
+          - 'id'
+          - '>'
+          - '0'
+    fieldsArray: []
+    
+services:
+  ## Services for category
+  odoo_category.count:
+    class: Fabit\SyliusOdooProductPlugin\Api\Category\GetCategoryCount
+    arguments: [ '@monolog.logger', '%category_params_count%', '%odoo_config%' ]
+    public: true
+
+  odoo_category.get:
+    class: Fabit\SyliusOdooProductPlugin\Api\Category\GetCategory
+    arguments: [ '@monolog.logger', '%category_params%', '%odoo_config%' ]
+    public: true
+    
+  ## Create console command
+  fabit.sylius_odoo_product_plugin.cli.import_category:
+    class: Fabit\SyliusOdooProductPlugin\Cli\ImportCategoris
+    public: true
+    tags:
+      - { name: console.command }
+    arguments:
+      - '@messenger.default_bus'
+    calls:
+      - [ setContainer, [ '@service_container' ] ]
+
+  ## Message handler
+  fabit.sylius_odoo_product_plugin.message_handler.import_odoo_categoris:
+    class: Fabit\SyliusOdooProductPlugin\MessageHandler\ImportOdooCategorisMessageHandler
+    arguments:
+      - '@messenger.default_bus'
+      - '@fabit.sylius_odoo_product_plugin.data_transformer.category'
+      - '@odoo_category.count'
+      - '@odoo_category.get'
+      - '@sylius.repository.odoo_sync_log'
+      - '@monolog.logger'
+    tags:
+      - { name: messenger.message_handler }
+
+  fabit.sylius_odoo_product_plugin.message_handler.import_odoo_category:
+    class: Fabit\SyliusOdooProductPlugin\MessageHandler\ImportOdooCategoryMessageHandler
+    arguments:
+      - '@fabit.sylius_odoo_product_plugin.importer.category'
+    tags:
+      - { name: messenger.message_handler }
+
+  ## Data Transformer
+  fabit.sylius_odoo_product_plugin.data_transformer.category:
+    class: Fabit\SyliusOdooProductPlugin\DataTransformer\CategoryDataTransformer
+    arguments:
+      - '%sylius_odoo_product.data_transform.category%'
+
+  fabit.sylius_odoo_product_plugin.importer.category:
+    class: Fabit\SyliusOdooProductPlugin\Importer\CategoryImporter
+    arguments:
+      - '@sylius.factory.taxon'
+      - '@sylius.repository.taxon'
+      - '@doctrine.orm.entity_manager'
+      - '@sylius.generator.taxon_slug'
+      - '@monolog.logger'
+      
+      
+      
