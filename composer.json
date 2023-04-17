@@ -60,10 +60,5 @@
 			"symfony/thanks" : false,
 			"dealerdirect/phpcodesniffer-composer-installer" : true
 		}
-	},
-	"repositories" : [{
-			"type" : "vcs",
-			"url" : "https://gitlab.com/fabit-sylius/sylius-odoo-core-plugin.git"
-		}
-	]
+	}
 }

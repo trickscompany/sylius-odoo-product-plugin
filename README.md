@@ -14,20 +14,6 @@ there you will find the <a href="https://docs.sylius.com/en/latest/plugin-develo
 
 ## Quickstart Installation
 
-- Add entry in your composer.json
-
-```json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://gitlab.com/fabit-sylius/sylius-odoo-product-plugin.git"
-    }, {
-        "type" : "vcs",
-        "url" : "https://gitlab.com/fabit-sylius/sylius-odoo-core-plugin.git"
-    }
-]
-```
-
 - Create new file [project]/]config/packages/sylius_odoo_product.yaml and copy configuraiton into it
 
 ```yaml
