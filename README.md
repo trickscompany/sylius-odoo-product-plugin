@@ -147,7 +147,7 @@ fabit_sylius_odoo_product_plugin:
     resource: "@SyliusOdooProductPlugin/Resources/config/routing.yaml"
 ```
 
-- Override the Product Entity, Add ProductTrait to your Product entity
+- Override the Product Entity ```src/Entity/Product/Product.php```, Add ProductTrait to your Product entity
 
 ```php
 namespace App\Entity\Product;
@@ -168,7 +168,7 @@ class Product extends BaseProduct
     use ProductTrait;
 ```
 
-- Override the ProductVariant Entity, Add ProductVariantTrait to your ProductVariant entity
+- Override the ProductVariant Entity ```src/Entity/Product/ProductVariant.php```, Add ProductVariantTrait to your ProductVariant entity
 
 ```php
 namespace App\Entity\Product;
@@ -194,7 +194,7 @@ class ProductVariant extends BaseProductVariant
 
   ```
   ###> fabit/sylius-odoo-product-plugin ###
-  odoo_url=https://demo-odoo.com
+  odoo_url=https://demo.odoo.com
   odoo_db=odoo-datbase
   odoo_user=odoo-user
   odoo_password=odoo-password
@@ -206,6 +206,7 @@ class ProductVariant extends BaseProductVariant
 ### Sylius basic intallation
 - Run following command to install install Sylius
     `php bin/console sylius:install`
+    - note: on a demo Odoo, use `en_EN` as localization
 
 - Make sure media directory has write permission
 
