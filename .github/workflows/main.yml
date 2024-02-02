@@ -21,12 +21,12 @@ jobs:
           PAT: ${{ secrets.GH_PAT }}
       - name: Deploy documentation to wiki
         uses: docker://decathlon/wiki-page-creator-action:latest
-        with:
+        env:
           ACTION_MAIL: ${{ github.actor }}@users.noreply.github.com
           ACTION_NAME: ${{ github.actor }}
           OWNER: ${{ github.repository_owner }}
           REPO_NAME: ${{ github.event.repository.name }}
-          WIKI_FILE_PATH: docs
+          MD_FOLDER: docs
           WIKI_PUSH_MESSAGE: Update documentation
           MD_EXTENSION: true
           GH_PAT: token.txt
