@@ -20,7 +20,7 @@ jobs:
         env:
           PAT: ${{ secrets.GH_PAT }}
       - name: Deploy documentation to wiki
-        uses: Decathlon/wiki-page-creator-action@latest
+        uses: docker://decathlon/wiki-page-creator-action:latest
         with:
           ACTION_MAIL: ${{ github.actor }}@users.noreply.github.com
           ACTION_NAME: ${{ github.actor }}
