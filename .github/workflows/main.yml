@@ -14,7 +14,7 @@ jobs:
           php-version: '8.1.4'
           tools: phpDocumentor
       - name: Generate documentation
-        run: phpdoc -d src -t docs
+        run: phpdoc run -d ./src -t ./docs
       - name: Create token file
         run: echo ${{ secrets.GH_PAT }} > token.txt
         env:
