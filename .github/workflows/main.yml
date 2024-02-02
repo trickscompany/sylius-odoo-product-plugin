@@ -1,0 +1,46 @@
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  doc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          tools: phpDocumentor
+      - name: Generate documentation
+        run: phpDocumentor -d src -t docs
+      - name: Create token file
+        run: echo ${{ secrets.PAT }} > token.txt
+        env:
+          PAT: ${{ secrets.PAT }}
+      - name: Deploy documentation to wiki
+        uses: Decathlon/wiki-page-creator-action@main
+        with:
+          ACTION_MAIL: ${{ github.actor }}@users.noreply.github.com
+          ACTION_NAME: ${{ github.actor }}
+          OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          WIKI_FILE_PATH: docs
+          WIKI_PUSH_MESSAGE: Update documentation
+          MD_EXTENSION: true
+          GH_PAT: token.txt
+      - name: Delete token file
+        run: rm token.txt
+      - name: Set up Git user
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      - name: Add documentation files
+        run: git add docs
+      - name: Commit documentation files
+        run: git commit -m "Update documentation"
+      - name: Push documentation files
+        run: git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
