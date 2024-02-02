@@ -13,7 +13,7 @@ jobs:
         with:
           php-version: '8.1.4'
           tools: phpDocumentor
-      - name: Generate documentation
+      - name: Generate documentation 
         run: phpdoc run -d ./src -t ./docs
       - name: Deploy documentation to wiki
         uses: docker://decathlon/wiki-page-creator-action:latest
