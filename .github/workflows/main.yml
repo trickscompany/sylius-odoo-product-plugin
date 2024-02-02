@@ -16,11 +16,11 @@ jobs:
       - name: Generate documentation
         run: phpDocumentor -d src -t docs
       - name: Create token file
-        run: echo ${{ secrets.PAT }} > token.txt
+        run: echo ${{ secrets.GH_PAT }} > token.txt
         env:
-          PAT: ${{ secrets.PAT }}
+          PAT: ${{ secrets.GH_PAT }}
       - name: Deploy documentation to wiki
-        uses: Decathlon/wiki-page-creator-action@main
+        uses: Decathlon/wiki-page-creator-action@latest
         with:
           ACTION_MAIL: ${{ github.actor }}@users.noreply.github.com
           ACTION_NAME: ${{ github.actor }}
@@ -43,4 +43,4 @@ jobs:
       - name: Push documentation files
         run: git push origin main
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
