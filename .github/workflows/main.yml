@@ -15,10 +15,6 @@ jobs:
           tools: phpDocumentor
       - name: Generate documentation
         run: phpdoc run -d ./src -t ./docs
-      - name: Create token file
-        run: echo ${{ secrets.GH_PAT }} > token.txt
-        env:
-          PAT: ${{ secrets.GH_PAT }}
       - name: Deploy documentation to wiki
         uses: docker://decathlon/wiki-page-creator-action:latest
         env:
@@ -29,9 +25,7 @@ jobs:
           MD_FOLDER: docs
           WIKI_PUSH_MESSAGE: Update documentation
           MD_EXTENSION: true
-          GH_PAT: token.txt
-      - name: Delete token file
-        run: rm token.txt
+          GH_PAT: ${{ secrets.GH_PAT }}
       - name: Set up Git user
         run: |
           git config --global user.name "${{ github.actor }}"
