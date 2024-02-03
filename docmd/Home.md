@@ -296,7 +296,7 @@ This is an automatically generated documentation for **Documentation**.
 
 | Trait | Description |
 |-------|-------------|
-| [`ProductTrait`](./classes/Fabit/SyliusOdooProductPlugin/Traits/ProductTrait.md) | |
+| [`ProductTrait`](./classes/Fabit/SyliusOdooProductPlugin/Traits/ProductTrait.md) | Test DR Doc|
 | [`ProductVariantTrait`](./classes/Fabit/SyliusOdooProductPlugin/Traits/ProductVariantTrait.md) | |
 
 
