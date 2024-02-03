@@ -14,7 +14,7 @@ jobs:
           php-version: '8.1.4'
           tools: phpDocumentor
       - name: Generate documentation 
-        run: phpdoc run -d ./src -t ./docmd --template="https://github.com/Saggre/phpDocumentor-markdown/tree/master/themes/markdown"
+        run: phpdoc run -d ./src -t ./docmd --template=https://github.com/Saggre/phpDocumentor-markdown/tree/master/themes/markdown
       - name: Deploy documentation to wiki
         uses: docker://decathlon/wiki-page-creator-action:latest
         env:
