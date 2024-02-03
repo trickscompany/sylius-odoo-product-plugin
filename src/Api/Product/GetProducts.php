@@ -23,7 +23,9 @@ namespace Fabit\SyliusOdooProductPlugin\Api\Product;
 
 use Fabit\SyliusOdooCorePlugin\OdooApiFactory;
 use Psr\Log\LoggerInterface;
-
+/**
+* Test Commentaire
+*/
 class GetProducts extends OdooApiFactory
 {
     public function __construct(LoggerInterface $logger, array $params, array $config = [])
