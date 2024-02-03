@@ -17,7 +17,7 @@
 
 ### processData
 
-
+DISCLAIMER :-)
 
 ```php
 public processData(mixed $data): int
