@@ -20,10 +20,8 @@
 declare(strict_types=1);
 
 namespace Fabit\SyliusOdooProductPlugin\Api\Category;
-/**
- * Test double
- */
 use Fabit\SyliusOdooCorePlugin\OdooApiFactory;
+
 /**
  * Do not edit or add to this file if you wish to upgrade Fab IT Sylius Odoo Product Sync Plugin to newer versions in the future.
  * A préciser
