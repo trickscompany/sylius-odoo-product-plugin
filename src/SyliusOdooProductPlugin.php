@@ -21,13 +21,12 @@ declare(strict_types=1);
 
 namespace Fabit\SyliusOdooProductPlugin;
 
-/**
-* Juste un autre test pour vérifier.
-*/
-
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+/**
+* Juste un autre test pour vérifier.
+*/
 final class SyliusOdooProductPlugin extends Bundle
 {
     use SyliusPluginTrait;
