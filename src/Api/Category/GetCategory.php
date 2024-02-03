@@ -20,7 +20,9 @@
 declare(strict_types=1);
 
 namespace Fabit\SyliusOdooProductPlugin\Api\Category;
-
+/**
+* Juste un autre test pour vérifier.
+*/
 use Fabit\SyliusOdooCorePlugin\OdooApiFactory;
 use Psr\Log\LoggerInterface;
 
@@ -31,7 +33,10 @@ class GetCategory extends OdooApiFactory
         parent::__construct($logger, $params, $config);
     }
 
-    /** @param mixed $data */
+    /** 
+    * Renvoi les donnes
+    * @param mixed $data 
+    */
     public function processData($data): array
     {
         return $data;
