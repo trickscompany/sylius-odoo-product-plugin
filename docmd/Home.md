@@ -17,7 +17,7 @@ This is an automatically generated documentation for **Documentation**.
 
 | Class | Description |
 |-------|-------------|
-| [`SyliusOdooProductPlugin`](./classes/Fabit/SyliusOdooProductPlugin/SyliusOdooProductPlugin.md) | |
+| [`SyliusOdooProductPlugin`](./classes/Fabit/SyliusOdooProductPlugin/SyliusOdooProductPlugin.md) | Juste un autre test pour vérifier.|
 
 
 
