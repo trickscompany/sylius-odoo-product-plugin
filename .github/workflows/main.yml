@@ -33,6 +33,7 @@ jobs:
         if: steps.verify_diff.outputs.changed == 'true'
         run: git commit -m "Update documentation"
       - name: Push documentation files
+        if: steps.verify_diff.outputs.changed == 'true'
         run: git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
