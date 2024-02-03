@@ -16,7 +16,7 @@ jobs:
       - name: Add Markdown Template
         run: composer require --dev saggre/phpdocumentor-markdown
       - name: Generate documentation 
-        run: phpdoc run -d ./src -t ./docmd --template="vendor/saggre/phpdocumentor-markdown/themes/markdown"
+        run: phpdoc run -d ./src -t ./docmd --template="vendor/saggre/phpdocumentor-markdown/themes/markdown" --force
       - name: Deploy documentation to wiki
         uses: docker://decathlon/wiki-page-creator-action:latest
         env:
@@ -35,7 +35,7 @@ jobs:
       - name: Add documentation files
         run: git add docmd/
       - name: Commit documentation files
-        run: git commit -am "Update documentation"
+        run: git commit -m "Update documentation"
       - name: Push documentation files
         run: git push origin main
         env:
