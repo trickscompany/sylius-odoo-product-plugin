@@ -20,8 +20,9 @@
 declare(strict_types=1);
 
 namespace Fabit\SyliusOdooProductPlugin;
+
 /**
-* Juste un autre test pour vérifier
+* Juste un autre test pour vérifier.
 */
 
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
