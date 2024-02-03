@@ -25,8 +25,8 @@ namespace Fabit\SyliusOdooProductPlugin\Api\Category;
  */
 use Fabit\SyliusOdooCorePlugin\OdooApiFactory;
 /**
- * Do not edit or add to this file if you wish to upgrade Fab IT Sylius Odoo Product Sync Plugin to newer
- * versions in the future.
+ * Do not edit or add to this file if you wish to upgrade Fab IT Sylius Odoo Product Sync Plugin to newer versions in the future.
+ * A préciser
  */
 class GetCategoryCount extends OdooApiFactory
 {
