@@ -29,7 +29,7 @@ This is an automatically generated documentation for **Documentation**.
 | Class | Description |
 |-------|-------------|
 | [`GetCategory`](./classes/Fabit/SyliusOdooProductPlugin/Api/Category/GetCategory.md) | Classe pour récupérer les categories.|
-| [`GetCategoryCount`](./classes/Fabit/SyliusOdooProductPlugin/Api/Category/GetCategoryCount.md) | Do not edit or add to this file if you wish to upgrade Fab IT Sylius Odoo Product Sync Plugin to newer<br />versions in the future.|
+| [`GetCategoryCount`](./classes/Fabit/SyliusOdooProductPlugin/Api/Category/GetCategoryCount.md) | Do not edit or add to this file if you wish to upgrade Fab IT Sylius Odoo Product Sync Plugin to newer versions in the future.|
 
 
 
