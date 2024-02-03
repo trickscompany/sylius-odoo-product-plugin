@@ -25,7 +25,10 @@ use Fabit\SyliusOdooCorePlugin\OdooApiFactory;
 
 class GetCategoryCount extends OdooApiFactory
 {
-    /** @param mixed $data */
+    /**
+    * DISCLAIMER :-)
+    * @param mixed $data 
+    */
     public function processData($data): int
     {
         if ($data !== false && !isset($data['faultCode'])) {
