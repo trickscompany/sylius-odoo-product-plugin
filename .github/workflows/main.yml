@@ -32,15 +32,19 @@ jobs:
       - uses: actions4gh/configure-wiki@v1
         with:
           path: docmd/
-      - name: Deploy documentation to wiki
-        uses: docker://decathlon/wiki-page-creator-action:latest
-        env:
-          ACTION_MAIL: ${{ github.actor }}@users.noreply.github.com
-          ACTION_NAME: ${{ github.actor }}
-          OWNER: ${{ github.repository_owner }}
-          REPO_NAME: ${{ github.event.repository.name }}
-          MD_FOLDER: docmd
-          WIKI_PUSH_MESSAGE: Update documentation
-          MD_EXTENSION: true
-          GH_PAT: ${{ secrets.GH_PAT }}
+      - uses: actions4gh/deploy-wiki@v1
+        with:
+          path: docmd/
+          
+      # - name: Deploy documentation to wiki
+      #   uses: docker://decathlon/wiki-page-creator-action:latest
+      #   env:
+      #     ACTION_MAIL: ${{ github.actor }}@users.noreply.github.com
+      #     ACTION_NAME: ${{ github.actor }}
+      #     OWNER: ${{ github.repository_owner }}
+      #     REPO_NAME: ${{ github.event.repository.name }}
+      #     MD_FOLDER: docmd
+      #     WIKI_PUSH_MESSAGE: Update documentation
+      #     MD_EXTENSION: true
+      #     GH_PAT: ${{ secrets.GH_PAT }}
 
