@@ -2,7 +2,7 @@
 
 # GetCategory
 
-
+Classe pour récupérer les categories.
 
 
 
@@ -17,7 +17,7 @@
 
 ### __construct
 
-
+Constructeur.
 
 ```php
 public __construct(\Psr\Log\LoggerInterface $logger, array $params, array $config = []): mixed

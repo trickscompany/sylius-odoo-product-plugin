@@ -28,7 +28,7 @@ This is an automatically generated documentation for **Documentation**.
 
 | Class | Description |
 |-------|-------------|
-| [`GetCategory`](./classes/Fabit/SyliusOdooProductPlugin/Api/Category/GetCategory.md) | |
+| [`GetCategory`](./classes/Fabit/SyliusOdooProductPlugin/Api/Category/GetCategory.md) | Classe pour récupérer les categories.|
 | [`GetCategoryCount`](./classes/Fabit/SyliusOdooProductPlugin/Api/Category/GetCategoryCount.md) | |
 
 
