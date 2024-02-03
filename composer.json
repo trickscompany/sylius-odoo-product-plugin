@@ -35,7 +35,8 @@
 		"symfony/web-server-bundle" : "^3.4|^4.3|^5.0",
 		"symplify/easy-coding-standard" : "^10.1",
 		"phpstan/phpstan" : "^1.4",
-		"sylius-labs/coding-standard": "^4.3"
+		"sylius-labs/coding-standard": "^4.3",
+		"saggre/phpdocumentor-markdown": "^0.1.4"
 	},
 	"prefer-stable" : true,
 	"autoload" : {
