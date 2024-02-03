@@ -12,9 +12,11 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1.4'
-          tools: phpDocumentor
+          tools: phpDocumentor,composer
+      - name: Add Markdown Template
+        run: composer require --dev saggre/phpdocumentor-markdown
       - name: Generate documentation 
-        run: phpdoc run -d ./src -t ./docmd --template=https://github.com/Saggre/phpDocumentor-markdown/tree/master/themes/markdown
+        run: phpdoc run -d ./src -t ./docmd --template="vendor/saggre/phpdocumentor-markdown/themes/markdown"
       - name: Deploy documentation to wiki
         uses: docker://decathlon/wiki-page-creator-action:latest
         env:
