@@ -33,9 +33,9 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
       - name: Add documentation files
-        run: git add docmd
+        run: git add .docmd/
       - name: Commit documentation files
-        run: git commit -m "Update documentation"
+        run: git commit -am "Update documentation"
       - name: Push documentation files
         run: git push origin main
         env:
