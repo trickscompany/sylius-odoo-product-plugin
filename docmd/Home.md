@@ -77,7 +77,7 @@ This is an automatically generated documentation for **Documentation**.
 
 | Class | Description |
 |-------|-------------|
-| [`OdooController`](./classes/Fabit/SyliusOdooProductPlugin/Controller/OdooController.md) | |
+| [`OdooController`](./classes/Fabit/SyliusOdooProductPlugin/Controller/OdooController.md) | Controller Odoo Import|
 | [`OdooProductSyncController`](./classes/Fabit/SyliusOdooProductPlugin/Controller/OdooProductSyncController.md) | |
 
 
