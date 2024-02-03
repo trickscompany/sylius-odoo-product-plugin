@@ -22,7 +22,9 @@ declare(strict_types=1);
 namespace Fabit\SyliusOdooProductPlugin\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
-
+/**
+* Test DR Doc
+*/
 trait ProductTrait
 {
     /**
