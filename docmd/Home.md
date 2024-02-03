@@ -40,7 +40,7 @@ This is an automatically generated documentation for **Documentation**.
 
 | Class | Description |
 |-------|-------------|
-| [`GetProducts`](./classes/Fabit/SyliusOdooProductPlugin/Api/Product/GetProducts.md) | |
+| [`GetProducts`](./classes/Fabit/SyliusOdooProductPlugin/Api/Product/GetProducts.md) | Test Commentaire|
 | [`GetProductsCount`](./classes/Fabit/SyliusOdooProductPlugin/Api/Product/GetProductsCount.md) | |
 
 
