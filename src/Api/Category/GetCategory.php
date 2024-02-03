@@ -20,14 +20,18 @@
 declare(strict_types=1);
 
 namespace Fabit\SyliusOdooProductPlugin\Api\Category;
-/**
-* Juste un autre test pour vérifier.
-*/
+
 use Fabit\SyliusOdooCorePlugin\OdooApiFactory;
 use Psr\Log\LoggerInterface;
 
+/**
+* Classe pour récupérer les categories.
+*/
 class GetCategory extends OdooApiFactory
 {
+    /**
+    * Constructeur.
+    */
     public function __construct(LoggerInterface $logger, array $params, array $config = [])
     {
         parent::__construct($logger, $params, $config);
