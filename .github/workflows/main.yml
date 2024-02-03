@@ -21,9 +21,16 @@ jobs:
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      
+      - name: Check if there are any changes
+        id: verify_diff
+        run: |
+          git diff --quiet docmd/ || echo "changed=true" >> $GITHUB_OUTPUT
       - name: Add documentation files
+        if: steps.verify_diff.outputs.changed == 'true'
         run: git add docmd/
       - name: Commit documentation files
+        if: steps.verify_diff.outputs.changed == 'true'
         run: git commit -m "Update documentation"
       - name: Push documentation files
         run: git push origin main
